@@ -28,17 +28,16 @@ repos:
         entry: uv run -- sqlmesh format
         language: system
         pass_filenames: true
-      - id: sqlmesh-lint
-        name: sqlmesh-lint
-        entry: uv run -- sqlmesh lint
-        language: system
-        pass_filenames: false
-
-  - repo: local
-    hooks:
+        files: '^(models|audits)/.*\.sql$'
       - id: sqlmesh-test
         name: sqlmesh-test
-        entry: uv run -- sqlmesh test
+        entry: uv run -- sqlmesh test --local
+        language: system
+        pass_filenames: true
+        files: '^(models/.*\.(sql|py)|tests/.*\.(yaml|yml))$'
+      - id: sqlmesh-lint
+        name: sqlmesh-lint
+        entry: uv run -- sqlmesh lint --local --use-project-index
         language: system
         pass_filenames: false
-        stages: [pre-push]
+        files: '^models/.*\.(sql|py)$'

@@ -1,4 +1,5 @@
 from sqlmesh.core.context import Context
+from sqlmesh.utils.errors import SQLMeshError
 
 from config import config
 
@@ -8,7 +9,7 @@ if __name__ == "__main__":
         print("Context initialized. Attempting migrate...")
         context.migrate()
         print("Migration successful.")
-    except Exception as e:
+    except SQLMeshError as e:
         print("\n--- ROOT CAUSE ERROR ---")
         print(f"Type: {type(e).__name__}")
         print(f"Message: {e!s}")

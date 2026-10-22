@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlmesh.core.context import Context
@@ -23,7 +23,7 @@ def export_state_to_local(context: Context, local_path: Path) -> None:
 if __name__ == "__main__":
     context = Context(config=config)
 
-    export_datetime = datetime.now(timezone.utc)
+    export_datetime = datetime.now(UTC)
     export_date = export_datetime.date().isoformat()
     timestamp = export_datetime.strftime("%Y%m%dT%H%M%SZ")
 

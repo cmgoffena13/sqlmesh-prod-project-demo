@@ -21,8 +21,9 @@ config = Config(
                 project=settings.GOOGLE_PROJECT,
                 keyfile="keyfile.json",
                 method=BigQueryConnectionMethod.OAUTH,
-                concurrent_tasks=5,
+                concurrent_tasks=1,  # PRODUCTION SWITCH: increase to 5-10 for higher concurrency
             ),
+            # PRODUCTION SWITCH: use Cloud SQL instead of DuckDB
             state_connection=DuckDBConnectionConfig(
                 database="state.db",
             ),
