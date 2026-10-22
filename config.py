@@ -9,7 +9,7 @@ from sqlmesh.core.config import (
     LinterConfig,
     ModelDefaultsConfig,
 )
-from sqlmesh.core.config.connection import BigQueryConnectionMethod, GCPPostgresConnectionConfig
+from sqlmesh.core.config.connection import BigQueryConnectionMethod
 from sqlmesh.core.notification_target import NotificationEvent, SlackWebhookNotificationTarget
 
 from settings import settings
@@ -23,14 +23,8 @@ config = Config(
                 method=BigQueryConnectionMethod.OAUTH,
                 concurrent_tasks=5,
             ),
-            state_connection=GCPPostgresConnectionConfig(
-                instance_connection_string=settings.CLOUD_SQL_INSTANCE_CONNECTION_STRING,
-                db="sqlmesh",
-                user=settings.CLOUD_SQL_USER,
-                password=settings.CLOUD_SQL_PASSWORD,
-                ip_type="public",
-                concurrent_tasks=5,
-                timeout=30,
+            state_connection=DuckDBConnectionConfig(
+                database="state.db",
             ),
             test_connection=DuckDBConnectionConfig(
                 database="test.db",

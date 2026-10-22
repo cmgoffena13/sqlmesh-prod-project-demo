@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "pendulum>=3.2.0",
     "pydantic-settings>=2.14.1",
-    "sqlmesh[bigquery,gcppostgres,slack]>=0.231.0",
+    "sqlmesh[bigquery,gcppostgres,slack,ui,web]>=0.231.0",
 ]
 
 [tool.ruff]
