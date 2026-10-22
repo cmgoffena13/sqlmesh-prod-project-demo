@@ -3,6 +3,7 @@
 install:
 	uv sync --all-extras
 	uv run -- prek install
+	cp .env.example .env
 
 clean:
 	rm -rf .cache
@@ -17,9 +18,13 @@ upgrade:
 	uv sync --upgrade --all-extras
 
 # SQLMesh Commands
-plan:
-	uv run -- sqlmesh plan
+prod-plan:
+	uv run -- sqlmesh plan prod
+
+dev-plan:
+	uv run -- sqlmesh plan dev_cort --no-prompts --auto-apply --test-changed-only
 	
+# Dev Commands
 ready: lint format test external-refs
 
 format:
