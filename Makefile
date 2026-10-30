@@ -6,9 +6,7 @@ install:
 	cp .env.example .env
 
 clean:
-	rm -rf .cache
-	rm -rf .ruff_cache
-	rm -rf .pytest_cache
+	rm -rf .cache .ruff_cache .pytest_cache
 
 reset: clean
 	uv venv --clear
@@ -29,6 +27,7 @@ ready: lint format test external-refs
 
 format:
 	uv run -- ruff format
+	uv run -- sqlmesh format
 
 lint:
 	uv run -- ruff check --fix
