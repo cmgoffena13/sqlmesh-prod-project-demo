@@ -23,7 +23,7 @@ dev-plan:
 	uv run -- sqlmesh plan dev_cort --no-prompts --auto-apply --test-changed-only
 	
 # Dev Commands
-ready: lint format test external-refs
+ready: lint format type-check test external-refs
 
 format:
 	uv run -- ruff format
